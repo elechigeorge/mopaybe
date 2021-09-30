@@ -1,4 +1,4 @@
-// bring in action types
+import api from "../util/api";
 import {
   BUSINESS_LOGIN_FAILED,
   BUSINESS_LOGIN_REQUESTED,
@@ -9,40 +9,84 @@ import {
   BUSINESS_REGISTER_SUCCESS,
 } from "../constant/types.js";
 
-export const businessLoginReducer = (state = {}, action) => {
-  switch (action.type) {
-    case BUSINESS_LOGIN_REQUESTED:
-      return { loading: true };
-    case BUSINESS_LOGIN_SUCCESS:
-      return { loading: false, businessInfo: action.payload };
-    case BUSINESS_LOGIN_FAILED:
-      return { loading: false, error: action.payload };
-    case BUSINESS_LOGOUT:
-      return {};
-    default:
-      return state;
-  }
-};
+export const login = (email, password) => async (dispatch) => {
+  try {
+    dispatch({
+      type: BUSINESS_LOGIN_REQUESTED,
+    });
 
-export const businessRegisterReducer = (state = {}, action) => {
-  switch (action.type) {
-    case BUSINESS_REGISTER_REQUESTED:
-      return { loading: true };
-    case BUSINESS_REGISTER_SUCCESS:
-      return { loading: false, businessInfo: action.payload };
-    case BUSINESS_REGISTER_FAILED:
-      return { loading: false, error: action.payload };
-    case BUSINESS_LOGOUT:
-      return {};
-    default:
-      return state;
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const { data } = await api.post("/user/login", { email, password }, config);
+
+    dispatch({
+      type: BUSINESS_LOGIN_SUCCESS,
+      payload: data,
+    });
+
+    localStorage.setItem("businessInfo", JSON.stringify(data));
+  } catch (error) {
+    dispatch({
+      type: BUSINESS_LOGIN_FAILED,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
   }
 };
 
 export const logout = () => (dispatch) => {
-  localStorage.removeItem("userInfo");
+  localStorage.removeItem("businessInfo");
 
   dispatch({ type: BUSINESS_LOGOUT });
 
   document.location.href = "/business/login";
+};
+
+export const register = (email, password) => async (dispatch) => {
+  try {
+    dispatch({
+      type: BUSINESS_REGISTER_REQUESTED,
+    });
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const { data } = await api.post(
+      "/user",
+      {
+        email,
+        password,
+      },
+      config
+    );
+
+    dispatch({
+      type: BUSINESS_REGISTER_SUCCESS,
+      payload: data,
+    });
+
+    dispatch({
+      type: BUSINESS_LOGIN_SUCCESS,
+      payload: data,
+    });
+
+    localStorage.setItem("businessInfo", JSON.stringify(data));
+  } catch (error) {
+    dispatch({
+      type: BUSINESS_REGISTER_FAILED,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
 };

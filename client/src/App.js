@@ -6,7 +6,9 @@ import Header from "./component/Header";
 // screens import
 import HomeScreen from "./screen/HomeScreen";
 import BusinessLogin from "./screen/BusinessLogin";
-
+import BusinessRegister from "./screen/BusinessRegister";
+import About from "./screen/About";
+import BusinessDashboard from "./screen/BusinessDashboard";
 const App = () => {
   return (
     <Router>
@@ -15,6 +17,12 @@ const App = () => {
         <Route path="/" component={HomeScreen} exact />
         <Container>
           <Route path="/business/login" component={BusinessLogin} />
+          <Route path="/business/register" component={BusinessRegister} />
+
+          <Route path="/business/dashboard" component={BusinessDashboard} />
+
+          {/* static view */}
+          <Route path="/about" component={About} />
         </Container>
       </main>
     </Router>

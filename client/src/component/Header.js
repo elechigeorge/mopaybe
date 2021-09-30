@@ -39,13 +39,13 @@ const Header = () => {
                 </>
               ) : (
                 <>
-                  <LinkContainer to="/login">
+                  <LinkContainer to="/business/login">
                     <Nav.Link>
                       <i className="fas fa-user"></i> Sign In
                     </Nav.Link>
                   </LinkContainer>
 
-                  <LinkContainer to="/login">
+                  <LinkContainer to="/about">
                     <Nav.Link>
                       <i className="fas fa-user"></i> About
                     </Nav.Link>

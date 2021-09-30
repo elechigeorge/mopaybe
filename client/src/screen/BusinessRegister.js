@@ -1,30 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import FormContainer from "../component/FormContainer";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
-import Message from "../component/Message";
-import Loader from "../component/Loader";
-import { login } from "../action/business";
 
-const BusinessLogin = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const dispatch = useDispatch();
-
-  const businessLogin = useSelector((state) => state.businessLogin);
-  const { loading, error, businessInfo } = businessLogin;
-
-  if (businessInfo) {
-    return <Redirect to="/business/dashboard" />;
-  }
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    dispatch(login(email, password));
-  };
-
+function BusinessRegister() {
   return (
     <Container>
       <Row>
@@ -38,19 +16,19 @@ const BusinessLogin = () => {
           }}
         >
           <FormContainer>
-            <h2 className="lead">Welcome back</h2>
+            <h2 className="lead">Register an account</h2>
             <hr />
-            <Form onSubmit={submitHandler}>
-              {error && <Message variant="danger">{error}</Message>}
-              {loading && <Loader />}
+            <Form>
+              <Form.Group className="mb-3" controlId="formBasicName">
+                <Form.Label>Fullname</Form.Label>
+                <Form.Control
+                  type="name"
+                  placeholder="Enter your business name"
+                />
+              </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
-                <Form.Control
-                  type="email"
-                  placeholder="Enter email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
+                <Form.Control type="email" placeholder="Enter email" />
                 <Form.Text className="text-muted">
                   We'll never share your email with anyone else.
                 </Form.Text>
@@ -58,12 +36,7 @@ const BusinessLogin = () => {
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Enter password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
+                <Form.Control type="password" placeholder="Password" />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Check type="checkbox" label="Remeber my login" />
@@ -77,8 +50,7 @@ const BusinessLogin = () => {
                   Submit
                 </Button>
                 <i>
-                  Don't have an account?{" "}
-                  <a href="/business/register">Register</a>
+                  Already have an account? <a href="/business/login">Login</a>
                 </i>
               </div>
             </Form>
@@ -105,6 +77,6 @@ const BusinessLogin = () => {
       </Row>
     </Container>
   );
-};
+}
 
-export default BusinessLogin;
+export default BusinessRegister;

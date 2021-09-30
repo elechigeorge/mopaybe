@@ -7,7 +7,7 @@ import {
   GET_PROFILE_SUCCESS,
   GET_PROFILE_FAILED,
 } from "../constant/types";
-// import { logout } from "./userAction";
+import { logout } from "./business";
 
 export const getProfile = () => async (dispatch, getState) => {
   try {
@@ -68,7 +68,7 @@ export const editProfile = (profile) => async (dispatch, getState) => {
         ? error.response.data.message
         : error.message;
     if (message === "Not authorized, token failed") {
-      //   dispatch(logout());
+      dispatch(logout());
     }
     dispatch({
       type: EDIT_PROFILE_FAILED,

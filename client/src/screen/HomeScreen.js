@@ -60,9 +60,9 @@ function HomeScreen() {
               {`${words[index].substring(0, subIndex)}${blink ? "|" : " "}`}
             </h1>
             <p>
-              Exam Lab is a machine learning examination system that recommend
-              university courses to aspiring university and polytechnics student
-              based on their academic performance with each subjects{" "}
+              Welcome to <i>mopaybe</i> a fast paced digital platform that
+              investment companies and investors to both new and fast growing
+              businesses in <i>Africa</i> to invest
             </p>
             <a
               href="/business/register"
@@ -70,10 +70,6 @@ function HomeScreen() {
               style={{ backgroundColor: "#10F504", border: "none" }}
             >
               Get Started for Free
-            </a>
-
-            <a href="/about" class="btn btn-outline-success btn-lg mx-2">
-              Learn More
             </a>
           </div>
         </Col>
