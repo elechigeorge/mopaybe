@@ -21,7 +21,11 @@ export const login = (email, password) => async (dispatch) => {
       },
     };
 
-    const { data } = await api.post("/user/login", { email, password }, config);
+    const { data } = await api.post(
+      "/account/login",
+      { email, password },
+      config
+    );
 
     dispatch({
       type: BUSINESS_LOGIN_SUCCESS,
@@ -61,7 +65,7 @@ export const register = (email, password) => async (dispatch) => {
     };
 
     const { data } = await api.post(
-      "/user",
+      "/account",
       {
         email,
         password,

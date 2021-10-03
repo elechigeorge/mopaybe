@@ -9,7 +9,7 @@ import {
 } from "../constant/types";
 import { logout } from "./business";
 
-export const getProfile = () => async (dispatch, getState) => {
+export const getCurrentProfile = () => async (dispatch, getState) => {
   try {
     dispatch({ type: GET_PROFILE_REQUESTED });
 
@@ -19,7 +19,7 @@ export const getProfile = () => async (dispatch, getState) => {
 
     const config = {
       headers: {
-        "auth-token": `${businessInfo.token}`,
+        Authorization: `Bearer ${businessInfo.token}`,
       },
     };
 
@@ -52,11 +52,13 @@ export const editProfile = (profile) => async (dispatch, getState) => {
 
     const config = {
       headers: {
-        "auth-token": `${businessInfo.token}`,
+        Authorization: `Bearer ${businessInfo.token}`,
       },
     };
 
-    const { data } = await api.post(`/profile`, profile, config);
+    const { data } = await api.post("/profile", profile, config);
+
+    console.log(data);
 
     dispatch({
       type: EDIT_PROFILE_SUCCESS,

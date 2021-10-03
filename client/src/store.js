@@ -28,17 +28,17 @@ const reducer = combineReducers({
   getProfile: getProfileReducer,
 });
 
-const studentInfoFromStorage = localStorage.getItem("studentInfo")
-  ? JSON.parse(localStorage.getItem("studentInfo"))
+const businessInfoFromStorage = localStorage.getItem("businessInfo")
+  ? JSON.parse(localStorage.getItem("businessInfo"))
   : null;
 
-const adminInfoFromStorage = localStorage.getItem("adminInfo")
-  ? JSON.parse(localStorage.getItem("adminInfo"))
+const investorInfoFromStorage = localStorage.getItem("investorInfo")
+  ? JSON.parse(localStorage.getItem("investorInfo"))
   : null;
 
 const initialState = {
-  studentLogin: { studentInfo: studentInfoFromStorage },
-  adminLogin: { adminInfo: adminInfoFromStorage },
+  businessLogin: { businessInfo: businessInfoFromStorage },
+  investorLogin: { investorInfo: investorInfoFromStorage },
 };
 
 const middleware = [thunk];

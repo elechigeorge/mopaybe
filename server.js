@@ -5,6 +5,12 @@ dotenv.config();
 import path from "path";
 import mongoose from "mongoose";
 
+// path
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 // app
 const server = express();
 
@@ -24,10 +30,13 @@ server.use(
 
 // DATABASE CONNECTION SETUP BLOCK
 mongoose
-  .connect(process.env.MongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    "mongodb+srv://user:user@mopayng.okafs.mongodb.net/mopaybeng?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => console.log("Database Connection established..."))
   .catch((error) => console.error(error.message));
 

@@ -11,6 +11,9 @@ const Header = () => {
   const businessLogin = useSelector((state) => state.businessLogin);
   const { businessInfo } = businessLogin;
 
+  const getProfile = useSelector((state) => state.getProfile);
+  const { error, loading, profile } = getProfile;
+
   const logoutHandler = () => {
     dispatch(logout());
   };
@@ -36,6 +39,10 @@ const Header = () => {
               {businessInfo ? (
                 <>
                   <Nav.Link onClick={logoutHandler}> Logout</Nav.Link>
+
+                  <LinkContainer to="/create">
+                    <Nav.Link>Update Profile</Nav.Link>
+                  </LinkContainer>
                 </>
               ) : (
                 <>

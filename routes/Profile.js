@@ -15,7 +15,6 @@ router
   .post(
     protect,
     check("company", "Company Name is required").notEmpty(),
-    check("description", "Business Description is required").notEmpty(),
     createProfile
   )
   .get(protect, getProfile);

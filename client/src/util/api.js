@@ -14,7 +14,7 @@ const api = axios.create({
  and check if the token is no longer valid.
  ie. Token has expired or user is no longer
  authenticated.
- logout the student if the token has expired
+ logout the business account if the token has expired
 **/
 
 api.interceptors.response.use(

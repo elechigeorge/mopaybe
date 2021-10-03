@@ -34,6 +34,8 @@ const createProfile = asyncHandler(async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
+  console.log(req.user, req.body);
+
   // destructure the request
   const {
     website,

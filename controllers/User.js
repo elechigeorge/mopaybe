@@ -6,7 +6,7 @@ import User from "../model/User.js";
 // @route   POST /account/login
 // @access  Public
 const authUser = asyncHandler(async (req, res) => {
-  const { password, email } = req.body;
+  const { email, password } = req.body;
 
   const user = await User.findOne({ email });
 
@@ -37,8 +37,8 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   const user = await User.create({
-    password: req.body.password,
     email: req.body.email,
+    password: req.body.password,
   });
 
   if (user) {

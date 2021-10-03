@@ -9,6 +9,7 @@ import BusinessLogin from "./screen/BusinessLogin";
 import BusinessRegister from "./screen/BusinessRegister";
 import About from "./screen/About";
 import BusinessDashboard from "./screen/BusinessDashboard";
+import CreateProfile from "./screen/CreateProfile";
 const App = () => {
   return (
     <Router>
@@ -23,6 +24,7 @@ const App = () => {
 
           {/* static view */}
           <Route path="/about" component={About} />
+          <Route path="/create" component={CreateProfile} />
         </Container>
       </main>
     </Router>
